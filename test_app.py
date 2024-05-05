@@ -65,11 +65,11 @@ def test_get_courses_filter_by_domain_and_sort_by_date():
 
 
 def test_get_course_by_id_exists():
-    response = client.get("/courses/6431137ab5da949e5978a281")
+    response = client.get("/courses/66354757ca7ac252664fd681")
     assert response.status_code == 200
     course = response.json()
     # get the course from the database
-    course_db = db.Courses.find_one({'_id': ObjectId('6431137ab5da949e5978a281')})
+    course_db = db.Courses.find_one({'_id': ObjectId('66354757ca7ac252664fd681')})
     # get the name of the course from the database
     name_db = course_db['name']
     # get the name of the course from the response
@@ -85,7 +85,7 @@ def test_get_course_by_id_not_exists():
 
 
 def test_get_chapter_info():
-    response = client.get("/courses/6431137ab5da949e5978a281/1")
+    response = client.get("/courses/66354757ca7ac252664fd681/1")
     assert response.status_code == 200
     chapter = response.json()
     assert chapter['name'] == 'Big Picture of Calculus'
@@ -93,13 +93,13 @@ def test_get_chapter_info():
 
 
 def test_get_chapter_info_not_exists():
-    response = client.get("/courses/6431137ab5da949e5978a281/990")
+    response = client.get("/courses/66354757ca7ac252664fd681/990")
     assert response.status_code == 404
     assert response.json() == {'detail': 'Chapter not found'}
 
 
 def test_rate_chapter():
-    course_id = "6431137ab5da949e5978a281"
+    course_id = "66354757ca7ac252664fd681"
     chapter_id = "1"
     rating = 1
 
